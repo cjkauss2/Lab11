@@ -20,7 +20,39 @@ public class Sorting {
     private static final int TOTAL_SORT_VALUES = 100;
 
     /** Total data size. */
-    private static final int TOTAL_INTEGER_VALUES = 1000000;
+    private static final int TOTAL_INTEGER_VALUES = 100000;
+
+    /**
+     *
+     * @param array input array
+     * @param lo index to start search
+     * @return minimum value in array after lo index
+     */
+    static int findMin(final int[] array, final int lo) {
+        int min = array[lo];
+        for (int i = lo + 1; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * Swap array values at given indices.
+     *
+     * @param array input array
+     * @param index1 first index
+     * @param index2 second index
+     * @return new array with swapped values
+     */
+    static int[] swap(final int[] array, final int index1, final int index2) {
+        int[] tempArray = new int[array.length];
+        int temp = array[index1];
+        tempArray[index1] = array[index2];
+        tempArray[index2] = temp;
+        return tempArray;
+    }
 
     /**
      * Bubble sort.
@@ -29,7 +61,14 @@ public class Sorting {
      * @return the sorted array, or null on failure
      */
     static int[] bubbleSort(final int[] array) {
-        return null;
+        for (int j = 0; j < array.length - 1; j++) {
+            for (int i = 1; i < array.length - j; i++) {
+                if (array[i] < array[i - 1]) {
+                    swap(array, i, i - 1);
+                }
+            }
+        }
+        return array;
     }
 
     /**
@@ -39,6 +78,9 @@ public class Sorting {
      * @return the sorted array, or null on failure
      */
     static int[] selectionSort(final int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            swap(array, i, findMin(array, i + 1));
+        }
         return null;
     }
 
